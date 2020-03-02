@@ -1,10 +1,17 @@
+import os
 import logging
 logging.basicConfig(filename="main.log", filemode="w", format="%(name)s - %(levelname)s - %(message)s")
 
 try:
 	import project.control
+	import project.settings
 
 	def main():
+		# Initialize globals
+		project.settings.init()
+		project.settings.baseDir = os.getcwd()
+
+		# Start controller
 		controller = project.control.ApplicationController()
 		controller.run()
 
